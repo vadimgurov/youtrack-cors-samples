@@ -53,7 +53,7 @@
 <script type="text/javascript">
     function createIssue() {
         $.ajax({
-            url:"http://scrumboard.myjetbrains.com" +
+            url:"http://vilka.myjetbrains.com" +
                     "/youtrack/rest/issue",
             dataType:"json",
             type:"POST",
@@ -71,7 +71,7 @@
 
     function loadProjects() {
         $.ajax({
-            url:"http://scrumboard.myjetbrains.com" +
+            url:"http://vilka.myjetbrains.com" +
                     "/youtrack/rest/project/all",
             dataType:"json"
         }).done(function (data) {
