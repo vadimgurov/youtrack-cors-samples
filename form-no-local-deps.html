@@ -11,7 +11,7 @@
 <body>
 
 
-<h3>Submit Issue</h3>
+<h3>Submit Issue <span id="total"></span></h3>
 
 <form onsubmit="createIssue(); return false;" class="form-horizontal">
     <div class="control-group">
@@ -86,9 +86,28 @@
                 });
     }
 
+    function countTotalIssues() {
+        $.ajax({
+            url:"http://scrumboard.myjetbrains.com" +
+                    "/youtrack/rest/issue/count",
+            dataType:"json"
+        }).done(function (data) {
+                    var val = parseInt(data.entity.value);
+                    if (val < 0) {
+                        window.setTimeout(function() {
+                            countTotalIssues();
+                        }, 1000);
+                    } else {
+                        $("#total").text("(total issues " + val + ")");
+                    }
+        });
+    }
+
     $(function(){
         $("#result").hide();
+        countTotalIssues();
         loadProjects();
+
     })
 </script>
 
