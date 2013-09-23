@@ -51,10 +51,10 @@
 </form>
 
 <script type="text/javascript">
+    baseUrl = "http://scrumboard.myjetbrains.com/youtrack/rest";
     function createIssue() {
         $.ajax({
-            url:"http://scrumboard.myjetbrains.com" +
-                    "/youtrack/rest/issue",
+            url: baseUrl + "/issue",
             dataType:"json",
             type:"POST",
             data:{
@@ -71,8 +71,7 @@
 
     function loadProjects() {
         $.ajax({
-            url:"http://scrumboard.myjetbrains.com" +
-                    "/youtrack/rest/project/all",
+            url: baseUrl + "/project/all",
             dataType:"json"
         }).done(function (data) {
                     var project = $("#project");
@@ -88,8 +87,7 @@
 
     function countTotalIssues() {
         $.ajax({
-            url:"http://scrumboard.myjetbrains.com" +
-                    "/youtrack/rest/issue/count",
+            url: baseUrl + "/issue/count",
             dataType:"json"
         }).done(function (data) {
                     var val = parseInt(data.entity.value);
@@ -107,7 +105,6 @@
         $("#result").hide();
         countTotalIssues();
         loadProjects();
-
     })
 </script>
 
